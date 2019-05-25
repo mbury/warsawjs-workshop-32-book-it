@@ -30,7 +30,7 @@ const HotelRating = ({ hotel, rate }) => (
         disabled={!!hotel.rating.user}
         maxRating={10}
         onRate={(e, { rating }) => rate(hotel.id, rating)}
-        defaultRating={0}
+        defaultRating={hotel.rating.user || 0}
         icon="star"
         size="small"
       />
@@ -38,4 +38,19 @@ const HotelRating = ({ hotel, rate }) => (
   </Table.Row>
 );
 
-export default HotelRating;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    hotel: getHotelToRating(state, ownProps.hotelId),
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    rate: (id, rating) => dispatch(rateHotel(id, rating)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HotelRating);
