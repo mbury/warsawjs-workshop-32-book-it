@@ -42,6 +42,8 @@
     ]
   },
   "devDependencies": {
+    "jest-dom": "^3.4.0",
+    "react-testing-library": "^7.0.1",
     "redux-devtools": "^3.5.0",
     "redux-devtools-extension": "^2.13.8"
   }
